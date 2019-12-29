@@ -1,0 +1,10 @@
+{
+  "name": "5_global_jest",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
