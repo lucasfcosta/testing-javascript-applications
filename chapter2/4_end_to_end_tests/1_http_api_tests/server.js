@@ -20,4 +20,4 @@ router.post("/carts/:username/items/:item", ctx => {
 
 app.use(router.routes());
 
-app.listen(3000);
+module.exports = app.listen(3000);

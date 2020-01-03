@@ -1,14 +1,9 @@
 {
   "name": "1_http_api_tests",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "isomorphic-fetch": "^2.2.1",
     "jest": "^24.9.0"

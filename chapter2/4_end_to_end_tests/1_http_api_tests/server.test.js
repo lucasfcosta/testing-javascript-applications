@@ -1,4 +1,4 @@
-require("./server");
+const app = require("./server");
 const fetch = require("isomorphic-fetch");
 
 const apiRoot = "http://localhost:3000";
@@ -23,3 +23,5 @@ test("adding items to a cart", async () => {
   const finalItemsResponse = await getItems("lucas");
   expect(await finalItemsResponse.json()).toEqual(["cheesecake"]);
 });
+
+afterAll(() => app.close());
