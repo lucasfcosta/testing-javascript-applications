@@ -1,5 +1,5 @@
 {
-  "name": "1_breaking_down_tests_big_tests",
+  "name": "2_breaking_down_tests_small_tests",
   "version": "1.0.0",
   "scripts": {
     "test": "jest"
