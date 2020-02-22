@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inventory contents 1`] = `
+Object {
+  "cheesecake": 1,
+  "croissant": 3,
+  "eclaire": 7,
+  "generatedAt": Any<Date>,
+  "macarroon": 3,
+}
+`;

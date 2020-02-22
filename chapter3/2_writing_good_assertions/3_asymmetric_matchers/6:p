@@ -1,0 +1,10 @@
+const { inventory, addToInventory } = require("./addToInventory");
+
+beforeEach(() => {
+  inventory.forEach((value, key) => inventory.delete(key));
+});
+
+test("returned value", () => {
+  const result = addToInventory("cheesecake", 2);
+  expect(typeof result).toBe("number");
+});
