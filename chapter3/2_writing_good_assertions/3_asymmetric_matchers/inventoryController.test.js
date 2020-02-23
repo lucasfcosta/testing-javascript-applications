@@ -8,7 +8,7 @@ test("inventory contents", () => {
     .set("eclaire", 7);
   const result = getInventory();
 
-  expect(result).toMatchSnapshot({
+  expect(result).toEqual({
     cheesecake: 1,
     macarroon: 3,
     croissant: 3,

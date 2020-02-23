@@ -1,0 +1,16 @@
+{
+  "name": "5_custom_matchers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "jest-extended": "^0.11.5"
+  }
+}

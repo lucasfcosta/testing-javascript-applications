@@ -1,6 +1,7 @@
 const inventory = new Map();
 
 const addToInventory = (item, n) => {
+  if (typeof n !== "number") throw new Error("quantity must be a number");
   const currentQuantity = inventory.get(item) || 0;
   const newQuantity = currentQuantity + n;
   inventory.set(item, newQuantity);
@@ -13,7 +14,7 @@ const getInventory = () => {
     return Object.assign({ [name]: quantity }, contents);
   }, {});
 
-  return { ...contents, generatedAt: new Date().toISOString() };
+  return { ...contents, generatedAt: new Date(new Date().setYear(3000)) };
 };
 
 module.exports = { inventory, addToInventory, getInventory };
