@@ -1,0 +1,18 @@
+{
+  "name": "3_mocks_stubs_and_spies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "inventoryController.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "pino": "^5.16.0"
+  }
+}
