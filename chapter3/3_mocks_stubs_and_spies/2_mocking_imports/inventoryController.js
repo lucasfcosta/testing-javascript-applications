@@ -1,10 +1,10 @@
-const logger = require("./logger");
+const { logInfo, logError } = require("./logger");
 
 const inventory = new Map();
 
 const addToInventory = (item, quantity) => {
   if (typeof quantity !== "number") {
-    logger.error(
+    logError(
       { quantity },
       "could not add item to inventory because quantity was not a number"
     );
@@ -13,7 +13,7 @@ const addToInventory = (item, quantity) => {
   const currentQuantity = inventory.get(item) || 0;
   const newQuantity = currentQuantity + quantity;
   inventory.set(item, newQuantity);
-  logger.info(
+  logInfo(
     { item, quantity, memoryUsage: process.memoryUsage().rss },
     "item added to the inventory"
   );
@@ -26,7 +26,7 @@ const getInventory = () => {
     return Object.assign({ [name]: quantity }, contents);
   }, {});
 
-  logger.info({ contents }, "inventory items fetched");
+  logInfo({ contents }, "inventory items fetched");
   return { ...contents, generatedAt: new Date(new Date().setYear(3000)) };
 };
 

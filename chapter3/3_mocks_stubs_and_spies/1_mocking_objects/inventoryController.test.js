@@ -10,8 +10,8 @@ beforeEach(() => {
   inventory.forEach((value, key) => inventory.delete(key));
 });
 
-beforeAll(() => jest.spyOn(logger, "info").mockImplementation(jest.fn()));
-beforeAll(() => jest.spyOn(logger, "error").mockImplementation(jest.fn()));
+beforeAll(() => jest.spyOn(logger, "logInfo").mockImplementation(jest.fn()));
+beforeAll(() => jest.spyOn(logger, "logError").mockImplementation(jest.fn()));
 
 afterEach(() => jest.resetAllMocks());
 
@@ -25,9 +25,9 @@ describe("addToInventory", () => {
   test("logging new items", () => {
     addToInventory("cheesecake", 2);
 
-    expect(logger.info.mock.calls).toHaveLength(1);
+    expect(logger.logInfo.mock.calls).toHaveLength(1);
 
-    const firstCallArgs = logger.info.mock.calls[0];
+    const firstCallArgs = logger.logInfo.mock.calls[0];
     const [firstArg, secondArg] = firstCallArgs;
 
     expect(firstArg).toEqual({
@@ -38,16 +38,16 @@ describe("addToInventory", () => {
     expect(secondArg).toEqual("item added to the inventory");
   });
 
-  test("logging errors", () => {
+  test("logging logErrors", () => {
     try {
       addToInventory("cheesecake", "not a number");
     } catch (e) {
       // No-op
     }
 
-    expect(logger.error.mock.calls).toHaveLength(1);
+    expect(logger.logError.mock.calls).toHaveLength(1);
 
-    const firstCallArgs = logger.error.mock.calls[0];
+    const firstCallArgs = logger.logError.mock.calls[0];
     const [firstArg, secondArg] = firstCallArgs;
 
     expect(firstArg).toEqual({ quantity: "not a number" });
@@ -62,9 +62,9 @@ describe("getInventory", () => {
     inventory.set("cheesecake", 2);
     getInventory("cheesecake", 2);
 
-    expect(logger.info.mock.calls).toHaveLength(1);
+    expect(logger.logInfo.mock.calls).toHaveLength(1);
 
-    const firstCallArgs = logger.info.mock.calls[0];
+    const firstCallArgs = logger.logInfo.mock.calls[0];
     const [firstArg, secondArg] = firstCallArgs;
 
     expect(firstArg).toEqual({ contents: { cheesecake: 2 } });

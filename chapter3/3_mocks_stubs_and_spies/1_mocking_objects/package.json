@@ -1,5 +1,5 @@
 {
-  "name": "3_mocks_stubs_and_spies",
+  "name": "1_mocking_objects",
   "version": "1.0.0",
   "description": "",
   "main": "inventoryController.js",
