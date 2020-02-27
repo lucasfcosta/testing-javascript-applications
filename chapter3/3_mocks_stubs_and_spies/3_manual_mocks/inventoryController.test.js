@@ -5,17 +5,14 @@ const {
   getInventory
 } = require("./inventoryController");
 
-jest.mock("./logger", () => ({
-  logInfo: jest.fn(),
-  logError: jest.fn()
-}));
-
 // Clearing the inventory before each test
 beforeEach(() => {
   inventory.forEach((value, key) => inventory.delete(key));
 });
 
 afterEach(() => jest.resetAllMocks());
+
+jest.mock("./logger");
 
 describe("addToInventory", () => {
   beforeEach(() => {
