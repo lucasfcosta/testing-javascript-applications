@@ -1,0 +1,15 @@
+{
+  "name": "1_end_to_end_tests",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-router": "^7.4.0"
+  }
+}
