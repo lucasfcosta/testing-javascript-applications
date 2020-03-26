@@ -1,4 +1,4 @@
-const { db } = require("./dbConnection");
+const { db, closeConnection } = require("./dbConnection");
 const crypto = require("crypto");
 const {
   hashPassword,

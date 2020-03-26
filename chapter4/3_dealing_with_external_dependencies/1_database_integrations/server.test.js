@@ -1,4 +1,4 @@
-const { db } = require("./dbConnection");
+const { db, closeConnection } = require("./dbConnection");
 const request = require("supertest");
 const { app } = require("./server.js");
 const { hashPassword } = require("./authenticationController.js");
