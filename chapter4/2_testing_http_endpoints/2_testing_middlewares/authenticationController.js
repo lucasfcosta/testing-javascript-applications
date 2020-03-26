@@ -15,7 +15,7 @@ const credentialsAreValid = (username, password) => {
   return hashPassword(password) === currentPasswordHash;
 };
 
-const authenticationMiddleware = (ctx, next) => {
+const authenticationMiddleware = async (ctx, next) => {
   try {
     const authHeader = ctx.request.headers.authorization;
     const credentials = Buffer.from(
@@ -27,13 +27,13 @@ const authenticationMiddleware = (ctx, next) => {
     if (!credentialsAreValid(username, password)) {
       throw new Error("invalid credentials");
     }
-
-    next();
   } catch (e) {
     ctx.status = 401;
     ctx.body = { message: "please provide valid credentials" };
     return;
   }
+
+  await next();
 };
 
 module.exports = {
