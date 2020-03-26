@@ -1,0 +1,18 @@
+{
+  "name": "1_database_integrations",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "knex": "^0.20.13",
+    "koa": "^2.11.0",
+    "koa-body-parser": "^1.1.2",
+    "koa-router": "^7.4.0",
+    "sqlite3": "^4.1.1",
+    "supertest": "^4.0.2"
+  }
+}
