@@ -5,11 +5,9 @@ test("createCart creates a cart for a username", done => {
   db("carts")
     .truncate()
     .then(() => createCart("Lucas da Costa"))
-    .then(([cartId]) => {
-      return Promise.all([db.select().from("carts"), cartId]);
-    })
-    .then(([result, cartId]) => {
-      expect(result).toEqual([{ id: cartId, username: "Lucas da Costa" }]);
+    .then(() => db.select("username").from("carts"))
+    .then(result => {
+      expect(result).toEqual([{ username: "Lucas da Costa" }]);
     })
     .then(closeConnection)
     .then(done);
