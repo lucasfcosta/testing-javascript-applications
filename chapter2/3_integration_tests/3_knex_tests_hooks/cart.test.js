@@ -9,14 +9,19 @@ beforeEach(async () => {
 afterAll(async () => await closeConnection());
 
 test("createCart creates a cart for a username", async () => {
-  const [cartId] = await createCart("Lucas da Costa");
-  const result = await db.select().from("carts");
-  expect(result).toEqual([{ id: cartId, username: "Lucas da Costa" }]);
+  await createCart("Lucas da Costa");
+  const result = await db.select("username").from("carts");
+  expect(result).toEqual([{ username: "Lucas da Costa" }]);
 });
 
-test("createCart creates a cart for a username", async () => {
-  const [cartId] = await createCart("Lucas da Costa");
+test("addItem adds an item to the cart", async () => {
+  const username = "Lucas da Costa";
+  await createCart(username);
+  const { id: cartId } = await db
+    .select()
+    .from("carts")
+    .where({ username });
   await addItem(cartId, "cheesecake");
-  const result = await db.select().from("carts_items");
+  const result = await db.select("itemName").from("carts_items");
   expect(result).toEqual([{ cartId, itemName: "cheesecake" }]);
 });
