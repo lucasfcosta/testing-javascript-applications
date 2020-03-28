@@ -3,8 +3,8 @@ const { createCart } = require("./cart");
 
 test("createCart creates a cart for a username", async () => {
   await db("carts").truncate();
-  const [cartId] = await createCart("Lucas da Costa");
-  const result = await db.select().from("carts");
-  expect(result).toEqual([{ id: cartId, username: "Lucas da Costa" }]);
+  await createCart("Lucas da Costa");
+  const result = await db.select("username").from("carts");
+  expect(result).toEqual([{ username: "Lucas da Costa" }]);
   await closeConnection();
 });
