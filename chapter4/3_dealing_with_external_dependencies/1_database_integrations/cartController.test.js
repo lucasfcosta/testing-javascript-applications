@@ -42,11 +42,17 @@ describe("addItemToCart", () => {
   });
 
   test("adding items above limit to cart", async () => {
-    const [userId] = await db("users").insert({
+    await db("users").insert({
       username: "test_user",
       email: "test_user@example.org",
       passwordHash: hashPassword("a_password")
     });
+
+    const { id: userId } = await db
+      .select()
+      .from("users")
+      .where({ username: "test_user" })
+      .first();
 
     await db("inventory").insert({ itemName: "cheesecake", quantity: 1 });
     await db("carts_items").insert({
@@ -76,11 +82,17 @@ describe("addItemToCart", () => {
   });
 
   test("logging added items", async () => {
-    const [userId] = await db("users").insert({
+    await db("users").insert({
       username: "test_user",
       email: "test_user@example.org",
       passwordHash: hashPassword("a_password")
     });
+
+    const { id: userId } = await db
+      .select()
+      .from("users")
+      .where({ username: "test_user" })
+      .first();
 
     await db("inventory").insert({ itemName: "cheesecake", quantity: 1 });
     await db("carts_items").insert({
