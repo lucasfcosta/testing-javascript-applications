@@ -6,7 +6,8 @@
   },
   "devDependencies": {
     "jest": "^24.9.0",
-    "jest-when": "^2.7.0"
+    "jest-when": "^2.7.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
@@ -14,7 +15,6 @@
     "koa": "^2.11.0",
     "koa-body-parser": "^1.1.2",
     "koa-router": "^7.4.0",
-    "sqlite3": "^4.1.1",
-    "supertest": "^4.0.2"
+    "sqlite3": "^4.1.1"
   }
 }
