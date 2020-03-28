@@ -16,7 +16,12 @@ const user = {
 };
 
 const createUser = async () => {
-  const [id] = await db("users").insert({ username, email, passwordHash });
+  await db("users").insert({ username, email, passwordHash });
+  const { id } = await db
+    .select()
+    .from("users")
+    .where({ username })
+    .first();
   user.id = id;
 };
 
