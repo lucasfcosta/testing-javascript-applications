@@ -166,6 +166,16 @@ describe("fetch inventory items", () => {
     eggs.id = eggsId;
   });
 
+  beforeEach(() => {
+    nock.cleanAll();
+  });
+
+  afterEach(() => {
+    if (!nock.isDone()) {
+      throw new Error("Not all mocked endpoints received requests.");
+    }
+  });
+
   it("can fetch an item from the inventory", async () => {
     const eggsResponse = {
       title: "FakeAPI",
