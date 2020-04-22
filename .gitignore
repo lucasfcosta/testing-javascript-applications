@@ -105,3 +105,6 @@ dist
 
 # SQLite Databases
 *.sqlite
+
+# .DS_Store
+.DS_Store
