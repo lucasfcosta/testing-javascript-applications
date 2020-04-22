@@ -1,4 +1,3 @@
-const { user: globalUser } = require("./userTestUtils");
 const crypto = require("crypto");
 const { db } = require("./dbConnection");
 
