@@ -176,7 +176,7 @@ describe("fetch inventory items", () => {
     }
   });
 
-  it("can fetch an item from the inventory", async () => {
+  test("can fetch an item from the inventory", async () => {
     const eggsResponse = {
       title: "FakeAPI",
       href: "example.org",
