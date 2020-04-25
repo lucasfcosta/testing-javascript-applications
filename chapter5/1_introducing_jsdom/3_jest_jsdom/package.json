@@ -1,0 +1,18 @@
+{
+  "name": "3_jest_jsdom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest",
+    "build": "browserify main.js -o bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "jest": "^24.9.0"
+  }
+}

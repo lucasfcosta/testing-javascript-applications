@@ -10,3 +10,5 @@ const incrementCount = e => {
 
 const incrementButton = window.document.getElementById("increment-button");
 incrementButton.addEventListener("click", incrementCount);
+
+module.exports = { incrementCount, data };
