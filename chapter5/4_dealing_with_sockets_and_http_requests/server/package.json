@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "test": "jest --runInBand",
-    "start": "node server.js"
+    "start": "NODE_ENV=development node server.js",
+    "migrate:dev": "knex migrate:latest --env development",
+    "seed:dev": "knex seed:run"
   },
   "devDependencies": {
     "@sinonjs/fake-timers": "github:sinonjs/fake-timers",
