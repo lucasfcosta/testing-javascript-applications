@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server ./",
+    "test": "jest",
+    "build": "browserify main.js -o bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "browserify": "^16.5.1",
-    "jest": "^25.4.0"
+    "http-server": "^0.12.1",
+    "jest": "^24.9.0"
   }
 }
