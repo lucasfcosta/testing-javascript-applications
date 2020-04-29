@@ -1,5 +1,7 @@
-const environmentName = process.env.NODE_ENV;
-const db = require("knex")(require("./knexfile")[environmentName]);
+const knex = require("knex");
+const knexConfig = require("./knexfile").development;
+
+const db = knex(knexConfig);
 
 const closeConnection = () => db.destroy();
 
