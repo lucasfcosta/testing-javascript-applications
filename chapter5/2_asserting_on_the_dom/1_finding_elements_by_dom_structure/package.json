@@ -1,0 +1,19 @@
+{
+  "name": "1_finding_elements_by_dom_structure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./",
+    "test": "jest",
+    "build": "browserify main.js -o bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "http-server": "^0.12.1",
+    "jest": "^24.9.0"
+  }
+}
