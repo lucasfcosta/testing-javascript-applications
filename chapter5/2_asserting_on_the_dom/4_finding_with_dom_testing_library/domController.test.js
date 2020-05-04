@@ -4,11 +4,11 @@ const { getByText, screen } = require("@testing-library/dom");
 
 const { updateItemList } = require("./domController");
 
-describe("updateItemList", () => {
-  beforeEach(() => {
-    document.body.innerHTML = initialHtml;
-  });
+beforeEach(() => {
+  document.body.innerHTML = initialHtml;
+});
 
+describe("updateItemList", () => {
   test("updates the DOM with the inventory items", () => {
     const inventory = {
       cheesecake: 5,
