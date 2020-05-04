@@ -108,3 +108,6 @@ dist
 
 # .DS_Store
 .DS_Store
+
+# Built JS bundles
+bundle.js
