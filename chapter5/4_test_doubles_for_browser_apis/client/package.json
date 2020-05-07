@@ -1,8 +1,8 @@
 {
-  "name": "2_asserting_on_the_dom",
+  "name": "1_handling_raw_events",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "start": "http-server ./",
     "test": "jest",
@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/dom": "^7.2.2",
+    "@testing-library/jest-dom": "^5.5.0",
     "browserify": "^16.5.1",
     "http-server": "^0.12.1",
-    "jest": "^25.4.0"
+    "jest": "^24.9.0"
   }
 }
