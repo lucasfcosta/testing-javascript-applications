@@ -1,5 +1,4 @@
 const { addItem, data } = require("./inventoryController");
-const formState = { hasValidItemName: false };
 
 const updateItemList = inventory => {
   const inventoryList = window.document.getElementById("item-list");
