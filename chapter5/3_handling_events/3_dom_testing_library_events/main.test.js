@@ -14,12 +14,17 @@ beforeEach(() => {
 });
 
 test("adding items through the form", () => {
-  screen.getByPlaceholderText("Item name").value = "cheesecake";
-  screen.getByPlaceholderText("Quantity").value = "6";
+  const itemField = screen.getByPlaceholderText("Item name");
+  fireEvent.input(itemField, {
+    target: { value: "cheesecake" },
+    bubbles: true
+  });
 
-  const event = new Event("submit");
+  const quantityField = screen.getByPlaceholderText("Quantity");
+  fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
+
   const form = document.getElementById("add-item-form");
-  form.dispatchEvent(event);
+  fireEvent.submit(form);
 
   const itemList = document.getElementById("item-list");
   expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
