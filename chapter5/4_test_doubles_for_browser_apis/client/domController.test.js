@@ -5,8 +5,12 @@ const { getByText, screen } = require("@testing-library/dom");
 const {
   updateItemList,
   handleAddItem,
-  checkFormValues
+  checkFormValues,
+  handleUndo,
+  handlePopstate
 } = require("./domController");
+
+const { data } = require("./inventoryController");
 
 beforeEach(() => {
   document.body.innerHTML = initialHtml;
@@ -53,6 +57,8 @@ describe("updateItemList", () => {
 });
 
 describe("handleAddItem", () => {
+  beforeEach(() => (data.inventory = {}));
+
   test("adding items to the page", () => {
     const event = {
       preventDefault: jest.fn(),
@@ -71,6 +77,22 @@ describe("handleAddItem", () => {
 
     const itemList = document.getElementById("item-list");
     expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
+  });
+
+  test("updating the application's history", () => {
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        elements: {
+          name: { value: "cheesecake" },
+          quantity: { value: "6" }
+        }
+      }
+    };
+
+    handleAddItem(event);
+
+    expect(history.state).toEqual({ inventory: { cheesecake: 6 } });
   });
 });
 
@@ -92,5 +114,80 @@ describe("checkFormValues", () => {
     document.querySelector(`input[name="quantity"]`).value = "";
     checkFormValues();
     expect(screen.getByText("Add to inventory")).toBeDisabled();
+  });
+});
+
+describe("tests with history", () => {
+  beforeEach(() => jest.spyOn(window, "addEventListener"));
+
+  afterEach(() => {
+    const popstateListeners = window.addEventListener.mock.calls.filter(
+      ([eventName]) => {
+        return eventName === "popstate";
+      }
+    );
+
+    popstateListeners.forEach(([eventName, handlerFn]) => {
+      window.removeEventListener(eventName, handlerFn);
+    });
+
+    jest.resetAllMocks();
+  });
+
+  beforeEach(done => {
+    const clearHistory = () => {
+      if (history.state === null) {
+        window.removeEventListener("popstate", clearHistory);
+        return done();
+      }
+
+      history.back();
+    };
+
+    window.addEventListener("popstate", clearHistory);
+
+    clearHistory();
+  });
+
+  describe("handleUndo", () => {
+    test("going back from a non-initial state", done => {
+      window.addEventListener("popstate", () => {
+        expect(history.state).toEqual(null);
+        done();
+      });
+
+      history.pushState({ cheesecake: 5 }, "title");
+      handleUndo();
+    });
+
+    test("going back from an initial state", () => {
+      jest.spyOn(history, "back");
+      handleUndo();
+
+      // This assertion doesn't care about whether
+      // a call to `history.back` would have finished,
+      // it only checks whether it's been called
+      expect(history.back.mock.calls).toHaveLength(0);
+    });
+  });
+
+  describe("handlePopstate", () => {
+    test("updating the item list with the current state", () => {
+      history.pushState(
+        { inventory: { cheesecake: 5, "carrot cake": 2 } },
+        "title"
+      );
+
+      handlePopstate();
+
+      const itemList = document.getElementById("item-list");
+      expect(itemList.childNodes).toHaveLength(2);
+      expect(
+        getByText(itemList, "cheesecake - Quantity: 5")
+      ).toBeInTheDocument();
+      expect(
+        getByText(itemList, "carrot cake - Quantity: 2")
+      ).toBeInTheDocument();
+    });
   });
 });

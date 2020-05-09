@@ -13,16 +13,39 @@ beforeEach(() => {
   require("./main");
 });
 
-test("adding items through the form", () => {
-  screen.getByPlaceholderText("Item name").value = "cheesecake";
-  screen.getByPlaceholderText("Quantity").value = "6";
+describe("adding items", () => {
+  test("updating the item list", () => {
+    const itemField = screen.getByPlaceholderText("Item name");
+    fireEvent.input(itemField, {
+      target: { value: "cheesecake" },
+      bubbles: true
+    });
 
-  const event = new Event("submit");
-  const form = document.getElementById("add-item-form");
-  form.dispatchEvent(event);
+    const quantityField = screen.getByPlaceholderText("Quantity");
+    fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-  const itemList = document.getElementById("item-list");
-  expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
+    const form = document.getElementById("add-item-form");
+    fireEvent.submit(form);
+
+    const itemList = document.getElementById("item-list");
+    expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
+  });
+
+  test("updating the history's state", () => {
+    const itemField = screen.getByPlaceholderText("Item name");
+    fireEvent.input(itemField, {
+      target: { value: "cheesecake" },
+      bubbles: true
+    });
+
+    const quantityField = screen.getByPlaceholderText("Quantity");
+    fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
+
+    const form = document.getElementById("add-item-form");
+    fireEvent.submit(form);
+
+    expect(history.state).toEqual({ inventory: { cheesecake: 6 } });
+  });
 });
 
 describe("item name validation", () => {

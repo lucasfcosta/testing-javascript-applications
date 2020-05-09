@@ -62,14 +62,20 @@ const checkFormValues = () => {
   }
 };
 
-const handleUndo = async () => {
+const handleUndo = () => {
   if (history.state === null) return;
   history.back();
 };
 
-window.addEventListener("popstate", event => {
-  data.inventory = event.state ? event.state.inventory : {};
+const handlePopstate = () => {
+  data.inventory = history.state ? history.state.inventory : {};
   updateItemList(data.inventory);
-});
+};
 
-module.exports = { updateItemList, handleAddItem, checkFormValues, handleUndo };
+module.exports = {
+  updateItemList,
+  handleAddItem,
+  checkFormValues,
+  handleUndo,
+  handlePopstate
+};
