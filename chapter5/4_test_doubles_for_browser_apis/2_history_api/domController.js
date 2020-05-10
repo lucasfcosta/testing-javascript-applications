@@ -1,6 +1,10 @@
 const { addItem, data } = require("./inventoryController");
 
 const updateItemList = inventory => {
+  if (inventory === null) return;
+
+  localStorage.setItem("inventory", JSON.stringify(inventory));
+
   const inventoryList = window.document.getElementById("item-list");
 
   // Clears the list
