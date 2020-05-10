@@ -10,6 +10,8 @@ const {
   handlePopstate
 } = require("./domController");
 
+const { clearHistoryHook, dettachPopstateHandlers } = require("./testUtils");
+
 const { data } = require("./inventoryController");
 
 beforeEach(() => {
@@ -120,34 +122,9 @@ describe("checkFormValues", () => {
 describe("tests with history", () => {
   beforeEach(() => jest.spyOn(window, "addEventListener"));
 
-  afterEach(() => {
-    const popstateListeners = window.addEventListener.mock.calls.filter(
-      ([eventName]) => {
-        return eventName === "popstate";
-      }
-    );
+  afterEach(dettachPopstateHandlers);
 
-    popstateListeners.forEach(([eventName, handlerFn]) => {
-      window.removeEventListener(eventName, handlerFn);
-    });
-
-    jest.resetAllMocks();
-  });
-
-  beforeEach(done => {
-    const clearHistory = () => {
-      if (history.state === null) {
-        window.removeEventListener("popstate", clearHistory);
-        return done();
-      }
-
-      history.back();
-    };
-
-    window.addEventListener("popstate", clearHistory);
-
-    clearHistory();
-  });
+  beforeEach(clearHistoryHook);
 
   describe("handleUndo", () => {
     test("going back from a non-initial state", done => {
@@ -156,7 +133,7 @@ describe("tests with history", () => {
         done();
       });
 
-      history.pushState({ cheesecake: 5 }, "title");
+      history.pushState({ inventory: { cheesecake: 5 } }, "title");
       handleUndo();
     });
 

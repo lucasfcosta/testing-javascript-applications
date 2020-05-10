@@ -2,6 +2,10 @@ const fs = require("fs");
 const initialHtml = fs.readFileSync("./index.html");
 const { screen, getByText, fireEvent } = require("@testing-library/dom");
 
+const { clearHistoryHook, dettachPopstateHandlers } = require("./testUtils.js");
+
+beforeEach(clearHistoryHook);
+
 beforeEach(() => {
   document.body.innerHTML = initialHtml;
 
@@ -11,7 +15,14 @@ beforeEach(() => {
   // Jest will have cached `main.js` and it will _not_ run again.
   jest.resetModules();
   require("./main");
+
+  // You can only spy on `window.addEventListener` after `main.js`
+  // has been executed. Otherwise `dettachPopstateHandlers` will
+  // also dettach the handlers that `main.js` attached to the page.
+  jest.spyOn(window, "addEventListener");
 });
+
+afterEach(dettachPopstateHandlers);
 
 describe("adding items", () => {
   test("updating the item list", () => {
@@ -31,7 +42,38 @@ describe("adding items", () => {
     expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
   });
 
-  test("updating the history's state", () => {
+  test("undo to one item", done => {
+    const itemField = screen.getByPlaceholderText("Item name");
+    const quantityField = screen.getByPlaceholderText("Quantity");
+    const form = document.getElementById("add-item-form");
+
+    fireEvent.input(itemField, {
+      target: { value: "cheesecake" },
+      bubbles: true
+    });
+    fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
+    fireEvent.submit(form);
+
+    fireEvent.input(itemField, {
+      target: { value: "carrot cake" },
+      bubbles: true
+    });
+    fireEvent.input(quantityField, { target: { value: "5" }, bubbles: true });
+    fireEvent.submit(form);
+
+    window.addEventListener("popstate", () => {
+      const itemList = document.getElementById("item-list");
+      expect(itemList.children).toHaveLength(1);
+      expect(
+        getByText(itemList, "cheesecake - Quantity: 6")
+      ).toBeInTheDocument();
+      done();
+    });
+
+    fireEvent.click(screen.getByText("Undo"));
+  });
+
+  test("undo to empty list", done => {
     const itemField = screen.getByPlaceholderText("Item name");
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
@@ -45,6 +87,14 @@ describe("adding items", () => {
     fireEvent.submit(form);
 
     expect(history.state).toEqual({ inventory: { cheesecake: 6 } });
+
+    window.addEventListener("popstate", () => {
+      const itemList = document.getElementById("item-list");
+      expect(itemList).toBeEmpty();
+      done();
+    });
+
+    fireEvent.click(screen.getByText("Undo"));
   });
 });
 
