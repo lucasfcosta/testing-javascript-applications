@@ -3,7 +3,7 @@
 
 <br>
 
-<h5 align=center>⚠️ This book is not yet available. Once copies are being sold, I'll update this repository with the appropriate links.</h5>
+<h5 align=center>➡ Available for early-access at <a href="https://www.manning.com/books/testing-javascript-applications">Manning.com</a></h5>
 
 <br>
 
