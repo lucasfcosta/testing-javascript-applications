@@ -9,7 +9,6 @@ describe("addItem", () => {
       .post(/inventory\/.*$/)
       .reply(200);
 
-    data.inventory.items = [];
     addItem("cheesecake", 5);
     expect(data.inventory.cheesecake).toBe(5);
   });

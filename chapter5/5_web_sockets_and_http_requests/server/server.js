@@ -1,5 +1,7 @@
 const fetch = require("isomorphic-fetch");
 const Koa = require("koa");
+const http = require("http");
+const IO = require("koa-socket-2");
 const cors = require("@koa/cors");
 const Router = require("koa-router");
 const bodyParser = require("koa-body-parser");
@@ -15,6 +17,9 @@ const {
 const PORT = process.env.NODE_ENV === "test" ? 5000 : 3000;
 
 const app = new Koa();
+const io = new IO();
+io.attach(app);
+
 const router = new Router();
 
 app.use(cors());
@@ -122,6 +127,7 @@ router.delete("/carts/:username/items/:item", async ctx => {
 router.post("/inventory/:itemName", async ctx => {
   const { itemName } = ctx.params;
   const { quantity } = ctx.request.body;
+  const clientId = ctx.request.headers["x-socket-client-id"];
 
   const current = await db
     .select("itemName", "quantity")
@@ -142,6 +148,11 @@ router.post("/inventory/:itemName", async ctx => {
   } else {
     await db("inventory").insert(newRecord);
   }
+
+  Object.entries(io.socket.sockets.connected).forEach(([id, socket]) => {
+    if (id === clientId) return;
+    socket.emit("add_item", { itemName, quantity });
+  });
 
   ctx.body = newRecord;
 });
@@ -203,4 +214,4 @@ router.get("/inventory/:itemName", async ctx => {
 
 app.use(router.routes());
 
-module.exports = { app: app.listen(PORT) };
+module.exports = { app: app.listen(PORT, "127.0.0.1") };
