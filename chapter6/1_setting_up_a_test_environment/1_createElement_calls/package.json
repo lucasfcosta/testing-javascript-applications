@@ -1,0 +1,21 @@
+{
+  "name": "1_createelement_calls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify index.js -o bundle.js",
+    "start": "http-server ./"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "http-server": "^0.12.3"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
