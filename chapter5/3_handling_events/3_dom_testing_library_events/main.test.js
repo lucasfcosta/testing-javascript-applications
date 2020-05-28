@@ -23,8 +23,8 @@ test("adding items through the form", () => {
   const quantityField = screen.getByPlaceholderText("Quantity");
   fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-  const form = document.getElementById("add-item-form");
-  fireEvent.submit(form);
+  const submitBtn = screen.getByText("Add to inventory");
+  fireEvent.click(submitBtn);
 
   const itemList = document.getElementById("item-list");
   expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
