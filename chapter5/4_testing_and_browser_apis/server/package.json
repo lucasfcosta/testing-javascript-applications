@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "jest --runInBand",
-    "start": "NODE_ENV=development node server.js",
+    "start": "cross-env NODE_ENV=development node server.js",
     "migrate:dev": "knex migrate:latest --env development",
     "seed:dev": "knex seed:run"
   },
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@koa/cors": "^3.0.0",
+    "cross-env": "^7.0.2",
     "isomorphic-fetch": "^2.2.1",
     "knex": "^0.20.13",
     "koa": "^2.11.0",
