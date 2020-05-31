@@ -49,6 +49,7 @@ test("persists items between sessions", () => {
 describe("adding items", () => {
   test("updating the item list", () => {
     const itemField = screen.getByPlaceholderText("Item name");
+    const submitBtn = screen.getByText("Add to inventory");
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
       bubbles: true
@@ -57,8 +58,7 @@ describe("adding items", () => {
     const quantityField = screen.getByPlaceholderText("Quantity");
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-    const form = document.getElementById("add-item-form");
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     const itemList = document.getElementById("item-list");
     expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
