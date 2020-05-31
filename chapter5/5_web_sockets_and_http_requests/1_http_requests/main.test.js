@@ -49,6 +49,7 @@ test("persists items between sessions", async () => {
     .replyWithError({ code: 500 });
 
   const itemField = screen.getByPlaceholderText("Item name");
+  const submitBtn = screen.getByText("Add to inventory");
   fireEvent.input(itemField, {
     target: { value: "cheesecake" },
     bubbles: true
@@ -57,8 +58,7 @@ test("persists items between sessions", async () => {
   const quantityField = screen.getByPlaceholderText("Quantity");
   fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-  const form = document.getElementById("add-item-form");
-  fireEvent.submit(form);
+  fireEvent.click(submitBtn);
 
   const itemListBefore = document.getElementById("item-list");
   expect(itemListBefore.childNodes).toHaveLength(1);
@@ -86,6 +86,7 @@ describe("adding items", () => {
       .reply(200);
 
     const itemField = screen.getByPlaceholderText("Item name");
+    const submitBtn = screen.getByText("Add to inventory");
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
       bubbles: true
@@ -94,8 +95,7 @@ describe("adding items", () => {
     const quantityField = screen.getByPlaceholderText("Quantity");
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-    const form = document.getElementById("add-item-form");
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     const itemList = document.getElementById("item-list");
     expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
@@ -106,6 +106,7 @@ describe("adding items", () => {
       .post("/inventory/cheesecake", JSON.stringify({ quantity: 6 }))
       .reply(200);
 
+    const submitBtn = screen.getByText("Add to inventory");
     const itemField = screen.getByPlaceholderText("Item name");
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
@@ -115,8 +116,7 @@ describe("adding items", () => {
     const quantityField = screen.getByPlaceholderText("Quantity");
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-    const form = document.getElementById("add-item-form");
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     if (!nock.isDone())
       throw new Error("POST /inventory/cheesecake was not reached");
@@ -135,21 +135,21 @@ describe("adding items", () => {
 
     const itemField = screen.getByPlaceholderText("Item name");
     const quantityField = screen.getByPlaceholderText("Quantity");
-    const form = document.getElementById("add-item-form");
+    const submitBtn = screen.getByText("Add to inventory");
 
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
       bubbles: true
     });
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     fireEvent.input(itemField, {
       target: { value: "carrot cake" },
       bubbles: true
     });
     fireEvent.input(quantityField, { target: { value: "5" }, bubbles: true });
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     window.addEventListener("popstate", () => {
       const itemList = document.getElementById("item-list");
@@ -169,6 +169,7 @@ describe("adding items", () => {
       .reply(200);
 
     const itemField = screen.getByPlaceholderText("Item name");
+    const submitBtn = screen.getByText("Add to inventory");
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
       bubbles: true
@@ -177,8 +178,7 @@ describe("adding items", () => {
     const quantityField = screen.getByPlaceholderText("Quantity");
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-    const form = document.getElementById("add-item-form");
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     expect(history.state).toEqual({ inventory: { cheesecake: 6 } });
 
