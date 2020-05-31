@@ -28,6 +28,7 @@ afterEach(dettachPopstateHandlers);
 
 test("persists items between sessions", () => {
   const itemField = screen.getByPlaceholderText("Item name");
+  const submitBtn = screen.getByText("Add to inventory");
   fireEvent.input(itemField, {
     target: { value: "cheesecake" },
     bubbles: true
@@ -36,7 +37,6 @@ test("persists items between sessions", () => {
   const quantityField = screen.getByPlaceholderText("Quantity");
   fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-  const submitBtn = screen.getByText("Add to inventory");
   fireEvent.click(submitBtn);
 
   const itemListBefore = document.getElementById("item-list");
@@ -60,6 +60,7 @@ test("persists items between sessions", () => {
 describe("adding items", () => {
   test("updating the item list", () => {
     const itemField = screen.getByPlaceholderText("Item name");
+    const submitBtn = screen.getByText("Add to inventory");
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
       bubbles: true
@@ -68,8 +69,7 @@ describe("adding items", () => {
     const quantityField = screen.getByPlaceholderText("Quantity");
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-    const form = document.getElementById("add-item-form");
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     const itemList = document.getElementById("item-list");
     expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
@@ -78,21 +78,22 @@ describe("adding items", () => {
   test("undo to one item", done => {
     const itemField = screen.getByPlaceholderText("Item name");
     const quantityField = screen.getByPlaceholderText("Quantity");
-    const form = document.getElementById("add-item-form");
+    const submitBtn = screen.getByText("Add to inventory");
 
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
       bubbles: true
     });
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
-    fireEvent.submit(form);
+
+    fireEvent.click(submitBtn);
 
     fireEvent.input(itemField, {
       target: { value: "carrot cake" },
       bubbles: true
     });
     fireEvent.input(quantityField, { target: { value: "5" }, bubbles: true });
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     window.addEventListener("popstate", () => {
       const itemList = document.getElementById("item-list");
@@ -108,6 +109,7 @@ describe("adding items", () => {
 
   test("undo to empty list", done => {
     const itemField = screen.getByPlaceholderText("Item name");
+    const submitBtn = screen.getByText("Add to inventory");
     fireEvent.input(itemField, {
       target: { value: "cheesecake" },
       bubbles: true
@@ -116,8 +118,7 @@ describe("adding items", () => {
     const quantityField = screen.getByPlaceholderText("Quantity");
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
-    const form = document.getElementById("add-item-form");
-    fireEvent.submit(form);
+    fireEvent.click(submitBtn);
 
     expect(history.state).toEqual({ inventory: { cheesecake: 6 } });
 
