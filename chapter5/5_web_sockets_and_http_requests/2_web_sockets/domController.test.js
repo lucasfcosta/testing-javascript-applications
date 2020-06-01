@@ -11,7 +11,7 @@ const {
   handlePopstate
 } = require("./domController");
 
-const { clearHistoryHook, dettachPopstateHandlers } = require("./testUtils");
+const { clearHistoryHook, detachPopstateHandlers } = require("./testUtils");
 
 const { API_ADDR, data } = require("./inventoryController");
 
@@ -154,7 +154,7 @@ describe("checkFormValues", () => {
 describe("tests with history", () => {
   beforeEach(() => jest.spyOn(window, "addEventListener"));
 
-  afterEach(dettachPopstateHandlers);
+  afterEach(detachPopstateHandlers);
 
   beforeEach(clearHistoryHook);
 

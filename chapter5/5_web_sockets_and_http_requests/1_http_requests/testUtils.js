@@ -13,7 +13,7 @@ const clearHistoryHook = done => {
   clearHistory();
 };
 
-const dettachPopstateHandlers = () => {
+const detachPopstateHandlers = () => {
   const popstateListeners = window.addEventListener.mock.calls.filter(
     ([eventName]) => {
       return eventName === "popstate";
@@ -27,4 +27,4 @@ const dettachPopstateHandlers = () => {
   jest.restoreAllMocks();
 };
 
-module.exports = { clearHistoryHook, dettachPopstateHandlers };
+module.exports = { clearHistoryHook, detachPopstateHandlers };

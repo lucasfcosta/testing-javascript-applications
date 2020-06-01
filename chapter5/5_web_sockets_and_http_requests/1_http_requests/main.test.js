@@ -4,7 +4,7 @@ const initialHtml = fs.readFileSync("./index.html");
 const { screen, getByText, fireEvent } = require("@testing-library/dom");
 const { API_ADDR } = require("./inventoryController");
 
-const { clearHistoryHook, dettachPopstateHandlers } = require("./testUtils.js");
+const { clearHistoryHook, detachPopstateHandlers } = require("./testUtils.js");
 
 beforeEach(clearHistoryHook);
 
@@ -25,12 +25,12 @@ beforeEach(async () => {
   await require("./main");
 
   // You can only spy on `window.addEventListener` after `main.js`
-  // has been executed. Otherwise `dettachPopstateHandlers` will
-  // also dettach the handlers that `main.js` attached to the page.
+  // has been executed. Otherwise `detachPopstateHandlers` will
+  // also detach the handlers that `main.js` attached to the page.
   jest.spyOn(window, "addEventListener");
 });
 
-afterEach(dettachPopstateHandlers);
+afterEach(detachPopstateHandlers);
 
 afterEach(() => {
   if (!nock.isDone()) {
