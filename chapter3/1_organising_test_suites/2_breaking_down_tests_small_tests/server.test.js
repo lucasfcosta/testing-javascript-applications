@@ -10,8 +10,7 @@ const addItem = (username, item) => {
 };
 
 describe("addItem", () => {
-  const targetUser = "lucas";
-  beforeEach(() => carts.delete(targetUser));
+  beforeEach(() => carts.forEach((value, key) => carts.delete(key)));
   beforeEach(() => inventory.set("cheesecake", 1));
 
   test("correct response", async () => {
@@ -25,8 +24,8 @@ describe("addItem", () => {
   });
 
   test("cart update", async () => {
-    await addItem("lucas", "cheesecake");
-    expect(carts.get("lucas")).toEqual(["cheesecake"]);
+    await addItem("keith", "cheesecake");
+    expect(carts.get("keith")).toEqual(["cheesecake"]);
   });
 
   test("soldout items", async () => {
