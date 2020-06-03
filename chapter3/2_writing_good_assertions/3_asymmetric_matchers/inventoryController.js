@@ -11,7 +11,7 @@ const addToInventory = (item, n) => {
 const getInventory = () => {
   const contentArray = Array.from(inventory.entries());
   const contents = contentArray.reduce((contents, [name, quantity]) => {
-    return Object.assign({ [name]: quantity }, contents);
+    return { ...contents, [name]: quantity };
   }, {});
 
   return { ...contents, generatedAt: new Date() };

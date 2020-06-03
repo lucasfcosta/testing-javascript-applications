@@ -11,9 +11,7 @@ const sendGetInventoryRequest = () => {
 test("fetching inventory", async () => {
   inventory.set("cheesecake", 1).set("macarroon", 2);
   const getInventoryResponse = await sendGetInventoryRequest("lucas");
-  const expected = Object.assign({}, getInventory(), {
-    generatedAt: expect.anything()
-  });
+  const expected = { ...getInventory(), generatedAt: expect.anything() };
 
   expect(await getInventoryResponse.json()).toEqual(expected);
 });
