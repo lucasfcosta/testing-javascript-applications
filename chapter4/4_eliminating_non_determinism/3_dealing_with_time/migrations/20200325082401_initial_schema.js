@@ -23,7 +23,7 @@ exports.up = async knex => {
 };
 
 exports.down = async knex => {
-  await knex.schema.dropTable("inventory");
-  await knex.schema.dropTable("carts");
   await knex.schema.dropTable("users");
+  await knex.schema.dropTable("carts_items");
+  await knex.schema.dropTable("inventory");
 };
