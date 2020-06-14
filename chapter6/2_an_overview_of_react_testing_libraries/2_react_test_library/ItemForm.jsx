@@ -12,11 +12,11 @@ const addItemRequest = (itemName, quantity) => {
 
 export const ItemForm = () => {
   const [itemName, setItemName] = React.useState("");
-  const [quantity, setQuantity] = React.useState();
+  const [quantity, setQuantity] = React.useState(0);
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
-    addItemRequest(itemName, quantity);
+    await addItemRequest(itemName, quantity);
   };
 
   return (
