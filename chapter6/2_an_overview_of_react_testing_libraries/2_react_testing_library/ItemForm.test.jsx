@@ -1,9 +1,8 @@
 import React from "react";
 import nock from "nock";
+import { API_ADDR } from "./constants";
 import { ItemForm } from "./ItemForm.jsx";
 import { render, fireEvent } from "@testing-library/react";
-
-const API_ADDR = "http://localhost:3000";
 
 test("form's elements", () => {
   const { getByText, getByPlaceholderText } = render(<ItemForm />);

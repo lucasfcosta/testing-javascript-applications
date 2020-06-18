@@ -1,18 +1,8 @@
 import React from "react";
 import nock from "nock";
+import { API_ADDR } from "./constants";
 import { App } from "./App.jsx";
-import { render, act, waitFor } from "@testing-library/react";
-
-const API_ADDR = "http://localhost:3000";
-
-jest.mock("./ItemList.jsx", () => {
-  const { ItemList } = jest.requireActual("./ItemList.jsx");
-  const FakeItemList = jest.fn(({ itemList }) => (
-    <div data-testid="fake-item-list">{JSON.stringify(itemList)}</div>
-  ));
-  FakeItemList.propTypes = ItemList.propTypes;
-  return { ItemList: FakeItemList };
-});
+import { render, waitFor } from "@testing-library/react";
 
 beforeEach(() => {
   nock(API_ADDR)
@@ -21,8 +11,10 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  expect(nock.isDone()).toBe(true);
-  nock.cleanAll();
+  if (!nock.isDone()) {
+    nock.cleanAll();
+    throw new Error("Not all mocked endpoints received requests.");
+  }
 });
 
 test("renders the appropriate header", () => {
@@ -31,12 +23,14 @@ test("renders the appropriate header", () => {
 });
 
 test("rendering the server's list of items", async () => {
-  const { getByTestId } = render(<App />);
+  const { getByText } = render(<App />);
 
   await waitFor(() => {
-    const FakeItemList = getByTestId("fake-item-list");
-    expect(FakeItemList.textContent).toEqual(
-      JSON.stringify({ cheesecake: 2, croissant: 5, macaroon: 96 })
-    );
+    const listElement = document.querySelector("ul");
+    expect(listElement.childElementCount).toBe(3);
   });
+
+  expect(getByText("cheesecake - Quantity: 2")).toBeInTheDocument();
+  expect(getByText("croissant - Quantity: 5")).toBeInTheDocument();
+  expect(getByText("macaroon - Quantity: 96")).toBeInTheDocument();
 });

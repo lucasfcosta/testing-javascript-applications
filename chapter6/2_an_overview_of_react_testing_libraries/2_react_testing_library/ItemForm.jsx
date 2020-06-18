@@ -1,6 +1,5 @@
 import React from "react";
-
-const API_ADDR = "http://localhost:3000";
+import { API_ADDR } from "./constants";
 
 const addItemRequest = (itemName, quantity) => {
   fetch(`${API_ADDR}/inventory/${itemName}`, {
