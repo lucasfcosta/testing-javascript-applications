@@ -1,0 +1,15 @@
+{
+  "name": "2_snapshots_beyond_components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.5"
+  }
+}
