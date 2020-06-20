@@ -1,0 +1,55 @@
+{
+  "name": "2_stubbing_components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify index.jsx -p esmify -o bundle.js",
+    "start": "http-server ./",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@testing-library/dom": "^7.10.1",
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^10.2.1",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.1",
+    "core-js": "^2.6.11",
+    "esmify": "^2.1.1",
+    "http-server": "^0.12.3",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^25.5",
+    "nock": "^12.0.3"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-spring": "^8.0.27"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            [
+              "@babel/preset-env",
+              {
+                "useBuiltIns": "usage",
+                "corejs": 2
+              }
+            ],
+            "@babel/preset-react"
+          ]
+        }
+      ]
+    ]
+  }
+}
