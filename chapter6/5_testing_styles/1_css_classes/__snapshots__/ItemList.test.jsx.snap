@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemList Component highlighting items that are almost out of stock 1`] = `
+@keyframes animation-0 {
+  0% {
+    opacity: .3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .3;
+  }
+}
+
+.emotion-0 {
+  font-weight: bold;
+  color: red;
+  -webkit-animation: animation-0 2s infinite;
+  animation: animation-0 2s infinite;
+}
+
+<li
+  class="emotion-0"
+>
+  Cheesecake - Quantity: 2
+</li>
+`;
