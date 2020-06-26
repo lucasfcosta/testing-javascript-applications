@@ -1,36 +1,27 @@
-import React, { useState } from "react";
-import { storiesOf } from "@storybook/react";
+import React from "react";
+import { withKnobs, object } from "@storybook/addon-knobs";
 import { ItemList } from "./ItemList";
 
-const itemListStories = storiesOf("ItemList", module);
+export default {
+  title: "ItemList",
+  component: ItemList,
+  includeStories: ["staticItemList", "animatedItems"],
+  decorators: [withKnobs]
+};
 
-itemListStories.add("A list of items", () => {
-  return (
-    <ItemList
-      itemList={{
-        cheesecake: 2,
-        croissant: 5,
-        macaroon: 96
-      }}
-    />
-  );
-});
+export const staticItemList = () => (
+  <ItemList
+    itemList={{
+      cheesecake: 2,
+      croissant: 5,
+      macaroon: 96
+    }}
+  />
+);
 
-itemListStories.add("Animating items", () => {
-  const initialList = { cheesecake: 2, croissant: 5 };
-  const StatefulItemList = () => {
-    const [itemList, setItemList] = useState(initialList);
-    const add = () => setItemList({ ...initialList, macaroon: 96 });
-    const reset = () => setItemList(initialList);
-
-    return (
-      <div>
-        <ItemList itemList={itemList} />
-        <button onClick={add}>Add item</button>
-        <button onClick={reset}>Reset</button>
-      </div>
-    );
-  };
-
-  return <StatefulItemList />;
-});
+export const animatedItems = () => {
+  const knobLabel = "Contents";
+  const knobDefaultValue = { cheesecake: 2, croissant: 5 };
+  const itemList = object(knobLabel, knobDefaultValue);
+  return <ItemList itemList={itemList} />;
+};
