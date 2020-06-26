@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logging actions 1`] = `
+<div>
+  <div
+    data-testid="action-log"
+  >
+    <h2>
+      Action Log
+    </h2>
+    <ul>
+      <li>
+        Date: 
+        Fri, 02 Jan 1970 00:00:00 GMT
+         - Message: 
+        Loaded item list
+         - Data: 
+        {"cheesecake":2,"macaroon":5}
+      </li>
+      <li>
+        Date: 
+        Sat, 03 Jan 1970 00:00:00 GMT
+         - Message: 
+        Item added
+         - Data: 
+        {"cheesecake":2}
+      </li>
+      <li>
+        Date: 
+        Sun, 04 Jan 1970 00:00:00 GMT
+         - Message: 
+        Item removed
+         - Data: 
+        {"cheesecake":1}
+      </li>
+      <li>
+        Date: 
+        Mon, 05 Jan 1970 00:00:00 GMT
+         - Message: 
+        Something weird happened
+         - Data: 
+        {"error":"The cheesecake is a lie"}
+      </li>
+    </ul>
+  </div>
+</div>
+`;

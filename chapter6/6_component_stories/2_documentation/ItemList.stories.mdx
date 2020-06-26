@@ -1,0 +1,29 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { ItemList } from "./ItemList";
+
+<Meta title="ItemList" component={ItemList} />
+
+# Item list
+
+The `ItemList` component displays a list of inventory items.
+
+It's capable of:
+
+- Animating new items
+- Highlighting items which are about to become unavailable
+
+## Props
+
+- An object in which each key represents an item's name, and each value represents its quantity.
+
+<Preview>
+  <Story name="A list of items">
+    <ItemList
+      itemList={{
+        cheesecake: 2,
+        croissant: 5,
+        macaroon: 96
+      }}
+    />
+  </Story>
+</Preview>

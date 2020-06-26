@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`updating the action log adding an item 1`] = `
+<div
+  data-testid="action-log"
+>
+  <h2>
+    Action Log
+  </h2>
+  <ul>
+    <li>
+      Date: 
+      Sat, 20 Jun 2020 13:37:00 GMT
+       - Message: 
+      Loaded items from the server
+       - Data: 
+      {"status":200,"body":{"cheesecake":2,"croissant":5,"macaroon":96}}
+    </li>
+    <li>
+      Date: 
+      Sun, 21 Jun 2020 13:37:00 GMT
+       - Message: 
+      Item added
+       - Data: 
+      {"itemAdded":"cheesecake","addedQuantity":6}
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`updating the action log when loading items 1`] = `
+<div
+  data-testid="action-log"
+>
+  <h2>
+    Action Log
+  </h2>
+  <ul>
+    <li>
+      Date: 
+      Sat, 20 Jun 2020 13:37:00 GMT
+       - Message: 
+      Loaded items from the server
+       - Data: 
+      {"status":200,"body":{"cheesecake":2,"croissant":5,"macaroon":96}}
+    </li>
+  </ul>
+</div>
+`;
