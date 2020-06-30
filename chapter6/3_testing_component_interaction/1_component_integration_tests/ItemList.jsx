@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 export const generateItemText = (itemName, quantity) => {
   const capitalizedItemName =
@@ -15,8 +14,4 @@ export const ItemList = ({ itemList }) => {
       })}
     </ul>
   );
-};
-
-ItemList.propTypes = {
-  itemList: PropTypes.objectOf(PropTypes.number).isRequired
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 export const ItemList = ({ itemList }) => {
   return (
@@ -13,8 +12,4 @@ export const ItemList = ({ itemList }) => {
       })}
     </ul>
   );
-};
-
-ItemList.propTypes = {
-  itemList: PropTypes.objectOf(PropTypes.number).isRequired
 };

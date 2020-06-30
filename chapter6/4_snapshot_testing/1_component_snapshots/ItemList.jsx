@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Transition } from "react-spring/renderprops";
 
 export const generateItemText = (itemName, quantity) => {
@@ -29,8 +28,4 @@ export const ItemList = ({ itemList }) => {
       </Transition>
     </ul>
   );
-};
-
-ItemList.propTypes = {
-  itemList: PropTypes.objectOf(PropTypes.number).isRequired
 };

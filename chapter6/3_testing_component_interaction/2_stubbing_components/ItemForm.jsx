@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { API_ADDR } from "./constants";
 
 const addItemRequest = (itemName, quantity) => {
@@ -33,8 +32,4 @@ export const ItemForm = ({ onItemAdded }) => {
       <button type="submit">Add item</button>
     </form>
   );
-};
-
-ItemForm.propTypes = {
-  onItemAdded: PropTypes.func
 };
