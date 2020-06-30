@@ -7,6 +7,11 @@ export const generateItemText = (itemName, quantity) => {
   return `${capitalizedItemName} - Quantity: ${quantity}`;
 };
 
+const almostOutOfStock = {
+  fontWeight: "bold",
+  color: "red"
+};
+
 export const ItemList = ({ itemList }) => {
   const items = Object.entries(itemList);
 
@@ -24,7 +29,9 @@ export const ItemList = ({ itemList }) => {
           <li
             key={itemName}
             className={quantity < 5 ? "almost-out-of-stock" : null}
-            style={styleProps}
+            style={
+              quantity < 5 ? { ...styleProps, ...almostOutOfStock } : styleProps
+            }
           >
             {generateItemText(itemName, quantity)}
           </li>

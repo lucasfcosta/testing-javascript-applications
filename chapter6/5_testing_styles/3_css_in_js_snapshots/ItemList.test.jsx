@@ -28,6 +28,6 @@ describe("ItemList Component", () => {
 
     const { getByText } = render(<ItemList itemList={itemList} />);
     const cheesecakeItem = getByText(generateItemText("cheesecake", 2));
-    expect(cheesecakeItem).toHaveClass("almost-out-of-stock");
+    expect(cheesecakeItem).toHaveStyle({ color: "red" });
   });
 });
