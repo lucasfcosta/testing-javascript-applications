@@ -49,6 +49,6 @@ test("invoking the onItemAdded callback", async () => {
 
   await waitFor(() => expect(nock.isDone()).toBe(true));
 
-  expect(onItemAdded.mock.calls).toHaveLength(1);
-  expect(onItemAdded.mock.calls[0]).toEqual(["cheesecake", 2]);
+  expect(onItemAdded).toHaveBeenCalledTimes(1);
+  expect(onItemAdded).toHaveBeenCalledWith("cheesecake", 2);
 });
