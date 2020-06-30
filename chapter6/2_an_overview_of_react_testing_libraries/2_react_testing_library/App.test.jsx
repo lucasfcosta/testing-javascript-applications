@@ -23,14 +23,12 @@ test("renders the appropriate header", () => {
 });
 
 test("rendering the server's list of items", async () => {
-  const { getByText } = render(<App />);
+  const { findByText } = render(<App />);
 
-  await waitFor(() => {
-    const listElement = document.querySelector("ul");
-    expect(listElement.childElementCount).toBe(3);
-  });
+  expect(await findByText("cheesecake - Quantity: 2")).toBeInTheDocument();
+  expect(await findByText("croissant - Quantity: 5")).toBeInTheDocument();
+  expect(await findByText("macaroon - Quantity: 96")).toBeInTheDocument();
 
-  expect(getByText("cheesecake - Quantity: 2")).toBeInTheDocument();
-  expect(getByText("croissant - Quantity: 5")).toBeInTheDocument();
-  expect(getByText("macaroon - Quantity: 96")).toBeInTheDocument();
+  const listElement = document.querySelector("ul");
+  expect(listElement.childElementCount).toBe(3);
 });
