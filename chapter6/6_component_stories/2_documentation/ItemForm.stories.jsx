@@ -15,7 +15,7 @@ export const itemForm = () => {
     useEffect(() => {
       fetchMock.post(`glob:${API_ADDR}/inventory/*`, 200);
       return () => fetchMock.restore();
-    });
+    }, []);
 
     return <ItemForm onItemAdded={action("form-submission")} />;
   };
