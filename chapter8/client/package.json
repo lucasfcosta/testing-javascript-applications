@@ -1,0 +1,28 @@
+{
+  "name": "1_http_requests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./",
+    "test": "jest",
+    "build": "browserify main.js -o bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/dom": "^7.2.2",
+    "@testing-library/jest-dom": "^5.5.0",
+    "browserify": "^16.5.1",
+    "http-server": "^0.12.1",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^24.9.0",
+    "nock": "^12.0.3",
+    "socket.io": "^2.3.0"
+  },
+  "dependencies": {
+    "http-shutdown": "^1.2.2",
+    "socket.io-client": "^2.3.0"
+  }
+}

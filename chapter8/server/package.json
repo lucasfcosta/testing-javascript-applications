@@ -1,0 +1,33 @@
+{
+  "name": "chapter5_server",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest --runInBand",
+    "start": "cross-env NODE_ENV=development node server.js",
+    "migrate:dev": "knex migrate:latest --env development",
+    "seed:dev": "knex seed:run"
+  },
+  "devDependencies": {
+    "@sinonjs/fake-timers": "github:sinonjs/fake-timers",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "knex": "^0.20.13",
+    "koa": "^2.11.0",
+    "koa-body-parser": "^1.1.2",
+    "koa-router": "^7.4.0",
+    "koa-socket-2": "^1.2.0",
+    "nock": "^12.0.3",
+    "socket.io": "^2.3.0",
+    "sqlite3": "^4.1.1"
+  },
+  "main": "alertController.spec.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
