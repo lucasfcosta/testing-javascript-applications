@@ -1,5 +1,5 @@
 describe("item submission", () => {
-  beforeEach(() => cy.task("emptyDb"));
+  beforeEach(() => cy.task("emptyInventory"));
 
   it("can add items through the form", () => {
     cy.visit("http://localhost:8080");

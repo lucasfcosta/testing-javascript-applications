@@ -4,7 +4,7 @@ const dbPlugin = (on, config) => {
   on(
     "task",
     {
-      emptyDb: () => db("inventory").truncate(),
+      emptyInventory: () => db("inventory").truncate(),
       seedItem: itemRow => db("inventory").insert(itemRow)
     },
     config
