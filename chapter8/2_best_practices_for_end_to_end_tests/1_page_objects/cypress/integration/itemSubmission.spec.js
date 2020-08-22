@@ -19,7 +19,7 @@ describe("item submission", () => {
   it("can undo submitted items", () => {
     InventoryManagement.visit();
     InventoryManagement.addItem("cheesecake", "10");
-    InventoryManagement.findItemEntry("cheesecake", "5");
+    InventoryManagement.addItem("cheesecake", "5");
     InventoryManagement.undo();
     InventoryManagement.findItemEntry("cheesecake", "10");
   });
@@ -27,7 +27,7 @@ describe("item submission", () => {
   it("saves each submission to the action log", () => {
     InventoryManagement.visit();
     InventoryManagement.addItem("cheesecake", "10");
-    InventoryManagement.findItemEntry("cheesecake", "5");
+    InventoryManagement.addItem("cheesecake", "5");
     InventoryManagement.undo();
     InventoryManagement.findItemEntry("cheesecake", "10");
 

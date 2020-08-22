@@ -4,11 +4,17 @@ export class InventoryManagement {
   }
 
   static enterItemName(itemName) {
-    return cy.get('input[placeholder="Item name"]').type(itemName);
+    return cy
+      .get('input[placeholder="Item name"]')
+      .clear()
+      .type(itemName);
   }
 
   static enterQuantity(quantity) {
-    return cy.get('input[placeholder="Quantity"]').type(quantity);
+    return cy
+      .get('input[placeholder="Quantity"]')
+      .clear()
+      .type(quantity);
   }
 
   static getSubmitButton() {
@@ -16,11 +22,9 @@ export class InventoryManagement {
   }
 
   static addItem(itemName, quantity) {
-    cy.get('input[placeholder="Item name"]').type(itemName);
-    cy.get('input[placeholder="Quantity"]').type(quantity);
-    cy.get('button[type="submit"]')
-      .contains("Add to inventory")
-      .click();
+    InventoryManagement.enterItemName(itemName);
+    InventoryManagement.enterQuantity(quantity);
+    InventoryManagement.getSubmitButton().click();
   }
 
   static findItemEntry(itemName, quantity) {
