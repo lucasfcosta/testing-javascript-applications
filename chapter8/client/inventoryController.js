@@ -16,8 +16,6 @@ const addItem = (itemName, quantity) => {
     body: JSON.stringify({ quantity })
   });
 
-  history.pushState({ inventory: { ...data.inventory } }, document.title);
-
   return data.inventory;
 };
 

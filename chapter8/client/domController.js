@@ -35,7 +35,23 @@ const handleAddItem = event => {
   const { name, quantity } = event.target.elements;
   addItem(name.value, parseInt(quantity.value, 10));
 
+  history.pushState({ inventory: { ...data.inventory } }, document.title);
+
   updateItemList(data.inventory);
+};
+
+window.handleAddItem = (name, quantity) => {
+  const e = {
+    preventDefault: () => {},
+    target: {
+      elements: {
+        name: { value: name },
+        quantity: { value: quantity }
+      }
+    }
+  };
+
+  return handleAddItem(e);
 };
 
 const validItems = ["cheesecake", "apple pie", "carrot cake"];
