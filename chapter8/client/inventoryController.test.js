@@ -11,6 +11,8 @@ afterEach(() => {
 });
 
 describe("addItem", () => {
+  beforeEach(() => (data.inventory = {}));
+
   test("adding new items to the inventory", () => {
     // Respond to all post requests
     // to POST /inventory/:itemName
@@ -28,6 +30,16 @@ describe("addItem", () => {
       .reply(200);
 
     addItem("cheesecake", 5);
+  });
+
+  test("updating the application's history", () => {
+    nock(API_ADDR)
+      .post(/inventory\/.*$/)
+      .reply(200);
+
+    addItem("cheesecake", 5);
+
+    expect(history.state).toEqual({ inventory: { cheesecake: 5 } });
   });
 
   describe("live-updates", () => {
