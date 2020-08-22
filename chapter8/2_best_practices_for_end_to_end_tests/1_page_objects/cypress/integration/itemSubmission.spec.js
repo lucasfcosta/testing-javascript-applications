@@ -1,4 +1,4 @@
-import { InventoryManagement } from "./inventoryManagement";
+import { InventoryManagement } from "../pageObjects/inventoryManagement";
 
 describe("item submission", () => {
   beforeEach(() => cy.task("emptyInventory"));
