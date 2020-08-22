@@ -40,7 +40,7 @@ export class InventoryManagement {
 
   static findAction(inventoryState) {
     return cy
-      .get("p")
+      .get("p:not(:nth-of-type(1))")
       .contains(
         `The inventory has been updated - ${JSON.stringify(inventoryState)}`
       );
