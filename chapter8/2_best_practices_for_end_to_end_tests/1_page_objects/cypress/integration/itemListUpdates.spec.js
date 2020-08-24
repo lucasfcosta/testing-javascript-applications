@@ -1,3 +1,5 @@
+import { InventoryManagement } from "../pageObjects/inventoryManagement";
+
 describe("item list updates", () => {
   beforeEach(() => cy.task("emptyInventory"));
 
@@ -8,18 +10,18 @@ describe("item list updates", () => {
       cy.addItem("carrot cake", 96);
       cy.visit("http://localhost:8080");
 
-      cy.get("li").contains("cheesecake - Quantity: 2");
-      cy.get("li").contains("apple pie - Quantity: 5");
-      cy.get("li").contains("carrot cake - Quantity: 96");
+      InventoryManagement.findItemEntry("cheesecake", "2");
+      InventoryManagement.findItemEntry("apple pie", "5");
+      InventoryManagement.findItemEntry("carrot cake", "96");
     });
   });
 
   describe("as other users add items", () => {
     it("updates the item list", () => {
       cy.visit("http://localhost:8080");
-      cy.wait(2000);
+      InventoryManagement.findAction({});
       cy.addItem("cheesecake", 22);
-      cy.get("li").contains("cheesecake - Quantity: 22");
+      InventoryManagement.findItemEntry("cheesecake", "22");
     });
   });
 });
