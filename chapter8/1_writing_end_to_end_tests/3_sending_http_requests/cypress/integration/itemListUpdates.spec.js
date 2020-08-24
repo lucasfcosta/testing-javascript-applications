@@ -2,7 +2,7 @@ describe("item list updates", () => {
   beforeEach(() => cy.task("emptyInventory"));
 
   describe("when the application loads for the first time", () => {
-    it.only("loads the initial list of items", () => {
+    it("loads the initial list of items", () => {
       cy.addItem("cheesecake", 2);
       cy.addItem("apple pie", 5);
       cy.addItem("carrot cake", 96);
