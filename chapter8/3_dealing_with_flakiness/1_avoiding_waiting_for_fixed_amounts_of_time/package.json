@@ -1,0 +1,19 @@
+{
+  "name": "1_setting_up_cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "NODE_ENV=development cypress open",
+    "cypress:run": "NODE_ENV=development cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^4.12.1",
+    "cypress-wait-until": "^1.7.1",
+    "knex": "^0.20.13",
+    "sqlite3": "4.1.1"
+  }
+}
