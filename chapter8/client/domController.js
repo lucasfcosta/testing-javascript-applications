@@ -1,4 +1,4 @@
-const { addItem, data } = require("./inventoryController");
+const { API_ADDR, addItem, data } = require("./inventoryController");
 
 const updateItemList = inventory => {
   if (inventory === null) return;
@@ -10,9 +10,16 @@ const updateItemList = inventory => {
   // Clears the list
   inventoryList.innerHTML = "";
 
-  Object.entries(inventory).forEach(([itemName, quantity]) => {
+  Object.entries(inventory).forEach(async ([itemName, quantity]) => {
     const listItem = window.document.createElement("li");
-    listItem.innerHTML = `${itemName} - Quantity: ${quantity}`;
+    const listLink = window.document.createElement("a");
+    listItem.appendChild(listLink);
+
+    const recipeResponse = await fetch(`${API_ADDR}/inventory/${itemName}`);
+    const recipeList = (await recipeResponse.json()).recipes;
+    const randomRecipe = Math.floor(Math.random() * recipeList.length - 1) + 1;
+    listLink.innerHTML = `${itemName} - Quantity: ${quantity}`;
+    listLink.href = recipeList[randomRecipe].href;
 
     if (quantity < 5) {
       listItem.className = "almost-soldout";
@@ -23,7 +30,7 @@ const updateItemList = inventory => {
 
   const inventoryContents = JSON.stringify(inventory);
   const p = window.document.createElement("p");
-  p.innerHTML = `The inventory has been updated - ${inventoryContents}`;
+  p.innerHTML = `[${new Date().toISOString()}] The inventory has been updated - ${inventoryContents}`;
 
   window.document.body.appendChild(p);
 };

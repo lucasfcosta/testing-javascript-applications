@@ -1,0 +1,53 @@
+export class InventoryManagement {
+  static visit() {
+    cy.visit("http://localhost:8080");
+  }
+
+  static enterItemName(itemName) {
+    return cy
+      .get('input[placeholder="Item name"]')
+      .clear()
+      .type(itemName);
+  }
+
+  static enterQuantity(quantity) {
+    return cy
+      .get('input[placeholder="Quantity"]')
+      .clear()
+      .type(quantity);
+  }
+
+  static getSubmitButton() {
+    return cy.get('button[type="submit"]').contains("Add to inventory");
+  }
+
+  static addItem(itemName, quantity) {
+    InventoryManagement.enterItemName(itemName);
+    InventoryManagement.enterQuantity(quantity);
+    InventoryManagement.getSubmitButton().click();
+  }
+
+  static findItemEntry(itemName, quantity) {
+    return cy.get("li").contains(`${itemName} - Quantity: ${quantity}`);
+  }
+
+  static undo() {
+    return cy
+      .get("button")
+      .contains("Undo")
+      .click();
+  }
+
+  static findAction(inventoryState) {
+    return cy.clock(c => {
+      const dateText = new Date(c.details().now).toISOString();
+      return cy
+        .get("p:not(:nth-of-type(1))")
+        .contains(
+          `[${dateText}]` +
+            " The inventory has been updated - " +
+            JSON.stringify(inventoryState)
+        );
+    });
+  }
+}

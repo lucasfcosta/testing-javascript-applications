@@ -32,16 +32,6 @@ describe("addItem", () => {
     addItem("cheesecake", 5);
   });
 
-  test("updating the application's history", () => {
-    nock(API_ADDR)
-      .post(/inventory\/.*$/)
-      .reply(200);
-
-    addItem("cheesecake", 5);
-
-    expect(history.state).toEqual({ inventory: { cheesecake: 5 } });
-  });
-
   describe("live-updates", () => {
     beforeAll(start);
 
