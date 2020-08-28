@@ -19,7 +19,9 @@ const updateItemList = inventory => {
     const recipeList = (await recipeResponse.json()).recipes;
     const randomRecipe = Math.floor(Math.random() * recipeList.length - 1) + 1;
     listLink.innerHTML = `${itemName} - Quantity: ${quantity}`;
-    listLink.href = recipeList[randomRecipe].href;
+    listLink.href = recipeList[randomRecipe]
+      ? recipeList[randomRecipe].href
+      : "#";
 
     if (quantity < 5) {
       listItem.className = "almost-soldout";

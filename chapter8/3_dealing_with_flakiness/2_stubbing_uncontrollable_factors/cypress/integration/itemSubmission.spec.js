@@ -17,11 +17,13 @@ describe("item submission", () => {
     InventoryManagement.visit();
     cy.window().then(w => cy.stub(w.Math, "random").returns(0.5));
     InventoryManagement.addItem("cheesecake", "10");
-    InventoryManagement.findItemEntry("cheesecake", "10").should(
-      "have.attr",
-      "href",
-      "http://example.com/always-the-same-url/second-recipe"
-    );
+    InventoryManagement.findItemEntry("cheesecake", "10")
+      .get("a")
+      .should(
+        "have.attr",
+        "href",
+        "http://example.com/always-the-same-url/second-recipe"
+      );
   });
 
   it("can update an item's quantity", () => {
