@@ -1,5 +1,5 @@
 {
-  "name": "1_setting_up_cypress",
+  "name": "1_avoiding_waiting_for_fixed_amounts_of_time",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

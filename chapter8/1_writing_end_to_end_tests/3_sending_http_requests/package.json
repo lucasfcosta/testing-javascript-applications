@@ -1,5 +1,5 @@
 {
-  "name": "1_setting_up_cypress",
+  "name": "3_sending_http_requests",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
