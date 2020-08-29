@@ -1,0 +1,20 @@
+{
+  "name": "4_visual_regression_tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "NODE_ENV=development cypress open",
+    "cypress:run": "NODE_ENV=development percy exec -- cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@percy/cypress": "^2.3.1",
+    "cypress": "^4.12.1",
+    "cypress-wait-until": "^1.7.1",
+    "knex": "^0.20.13",
+    "sqlite3": "4.1.1"
+  }
+}

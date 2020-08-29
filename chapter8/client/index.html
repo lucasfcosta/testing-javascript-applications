@@ -7,6 +7,12 @@
       .almost-soldout {
         color: red;
       }
+
+      @media only percy {
+        p:not(:first-child) {
+          visibility: hidden;
+        }
+      }
     </style>
   </head>
   <body>
