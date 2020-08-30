@@ -28,7 +28,7 @@ export class InventoryManagement {
   }
 
   static findItemEntry(itemName, quantity) {
-    return cy.get("li").contains(`${itemName} - Quantity: ${quantity}`);
+    return cy.contains("li", `${itemName} - Quantity: ${quantity}`);
   }
 
   static undo() {
