@@ -49,19 +49,21 @@ const handleAddItem = event => {
   updateItemList(data.inventory);
 };
 
-window.handleAddItem = (name, quantity) => {
-  const e = {
-    preventDefault: () => {},
-    target: {
-      elements: {
-        name: { value: name },
-        quantity: { value: quantity }
+if (window.Cypress) {
+  window.handleAddItem = (name, quantity) => {
+    const e = {
+      preventDefault: () => {},
+      target: {
+        elements: {
+          name: { value: name },
+          quantity: { value: quantity }
+        }
       }
-    }
-  };
+    };
 
-  return handleAddItem(e);
-};
+    return handleAddItem(e);
+  };
+}
 
 const validItems = ["cheesecake", "apple pie", "carrot cake"];
 const checkFormValues = () => {
