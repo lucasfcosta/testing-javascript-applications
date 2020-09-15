@@ -39,10 +39,12 @@ export class InventoryManagement {
   }
 
   static findAction(inventoryState) {
-    return cy
-      .get("p:not(:nth-of-type(1))")
-      .contains(
-        `The inventory has been updated - ${JSON.stringify(inventoryState)}`
-      );
+    return cy.get("p:not(:nth-of-type(1))").then(p => {
+      return Array.from(p).filter(p => {
+        return p.innerText.includes(
+          `The inventory has been updated - ${JSON.stringify(inventoryState)}`
+        );
+      });
+    });
   }
 }

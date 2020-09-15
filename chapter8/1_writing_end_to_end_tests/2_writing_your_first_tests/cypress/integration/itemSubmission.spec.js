@@ -43,7 +43,15 @@ describe("item submission", () => {
       .contains("Undo")
       .click();
 
-    cy.get("li").contains("cheesecake - Quantity: 10");
+    cy.get("p")
+      .then(p => {
+        return Array.from(p).filter(p => {
+          return p.innerText.contains(
+            'The inventory has been updated - {"cheesecake":10}'
+          );
+        });
+      })
+      .should("have.length", 2);
   });
 
   it("saves each submission to the action log", () => {
@@ -66,9 +74,16 @@ describe("item submission", () => {
       .click();
 
     cy.get("p").contains("The inventory has been updated - {}");
-    cy.get("p").contains('The inventory has been updated - {"cheesecake":10}');
+    cy.get("p")
+      .then(p => {
+        return Array.from(p).filter(p => {
+          return p.innerText.contains(
+            'The inventory has been updated - {"cheesecake":10}'
+          );
+        });
+      })
+      .should("have.length", 2);
     cy.get("p").contains('The inventory has been updated - {"cheesecake":15}');
-    cy.get("p").contains('The inventory has been updated - {"cheesecake":10}');
   });
 
   describe("given a user enters an invalid item name", () => {

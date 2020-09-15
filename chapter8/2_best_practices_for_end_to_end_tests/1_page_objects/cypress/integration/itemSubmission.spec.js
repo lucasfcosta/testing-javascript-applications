@@ -32,9 +32,8 @@ describe("item submission", () => {
     InventoryManagement.findItemEntry("cheesecake", "10");
 
     InventoryManagement.findAction({});
-    InventoryManagement.findAction({ cheesecake: 10 });
+    InventoryManagement.findAction({ cheesecake: 10 }).should("have.length", 2);
     InventoryManagement.findAction({ cheesecake: 15 });
-    InventoryManagement.findAction({ cheesecake: 10 });
   });
 
   describe("given a user enters an invalid item name", () => {
