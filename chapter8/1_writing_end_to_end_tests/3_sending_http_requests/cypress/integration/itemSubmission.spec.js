@@ -46,7 +46,7 @@ describe("item submission", () => {
     cy.get("p")
       .then(p => {
         return Array.from(p).filter(p => {
-          return p.innerText.contains(
+          return p.innerText.includes(
             'The inventory has been updated - {"cheesecake":10}'
           );
         });
@@ -78,7 +78,7 @@ describe("item submission", () => {
     cy.get("p")
       .then(p => {
         return Array.from(p).filter(p => {
-          return p.innerText.contains(
+          return p.innerText.includes(
             'The inventory has been updated - {"cheesecake":10}'
           );
         });
