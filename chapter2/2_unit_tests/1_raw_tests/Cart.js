@@ -4,7 +4,9 @@ class Cart {
   }
 
   addToCart(item) {
-    this.items.push(item);
+    if (item) {
+      this.items.push(item);
+    }
   }
 }
 
