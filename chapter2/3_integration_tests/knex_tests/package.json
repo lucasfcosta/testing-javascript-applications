@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test:promise": "jest cart.promise.test.js",
+    "test:done": "jest cart.done.test.js",
+    "test:hooks": "jest cart.hooks.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "knex": "^0.20.6",
-    "sqlite3": "^4.1.1"
+    "knex": "^0.20.15",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
     "jest": "^24.9.0"
