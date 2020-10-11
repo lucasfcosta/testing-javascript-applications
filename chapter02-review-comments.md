@@ -1,5 +1,7 @@
 # Testing JavaScript Applications
 
+> **Note:** The below tests were executed and verified.
+
 ## Chapter 2: What to test and when
 
 ### Listing 2.1 Cart.js
