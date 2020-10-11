@@ -108,7 +108,7 @@ No comments.
 
 Are in the same file! chapter2\4_end_to_end_tests\1_http_api_tests\server.test.js
 
-When running the tests, I got an error. While the code looks OK and logical, the test fails for http status code. Same error with code in folder `2_http_api_with_remove_item`.
+When running the tests, I got an error. While the code looks OK and logical, the test fails for http status code. The error is listed below!
 
 ```
 > 1_http_api_tests@1.0.0 test C:\Users\Srihari\GitHub\testing-javascript-applications\chapter2\4_end_to_end_tests\1_http_api_tests
@@ -141,6 +141,12 @@ Time:        3.891s
 Ran all test suites.
 npm ERR! Test failed.  See above for more details.
 ```
+
+**Update**: After troubleshooting it turned out that I was running another application in the same port (3000) in my local box.
+
+Please include a note to readers.
+
+> **Note:** Please ensure that no other application is using the local port 3000, before running the tests in this book/chapter!
 
 ### Listing 2. 21. package.json
 
