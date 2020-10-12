@@ -10,6 +10,7 @@ const addToInventory = (item, quantity) => {
     );
     throw new Error("quantity must be a number");
   }
+
   const currentQuantity = inventory.get(item) || 0;
   const newQuantity = currentQuantity + quantity;
   inventory.set(item, newQuantity);

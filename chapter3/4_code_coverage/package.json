@@ -1,10 +1,11 @@
 {
-  "name": "3_manual_mocks",
+  "name": "4_code_coverage",
   "version": "1.0.0",
   "description": "",
   "main": "inventoryController.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",

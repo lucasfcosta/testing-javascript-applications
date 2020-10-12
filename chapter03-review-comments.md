@@ -176,6 +176,138 @@ No comments.
 
 No comments. Shall we consider including the code snippet as a test for non-circular assertion in the git repo ?
 
-End of comments for 3.2!
+### Listing 3. 12. logger.js
 
-TO START FROM 3.3. Test doubles: mocks, stubs, and spies
+No comments.
+
+### Listing 3. 13. inventoryController.js
+
+No comments.
+
+### Listing 3. 14. inventoryController.js
+
+No comments.
+
+### Listing 3. 15. inventoryController.js
+
+No comments.
+
+### Listing 3. 16. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 17. inventoryController.js
+
+No comments.
+
+### Listing 3. 18. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 19. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 20. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 21. inventoryController.js
+
+No comments.
+
+### Listing 3. 22. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 23. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 24. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 25. inventoryController.js
+
+No comments.
+
+### Listing 3. 26. inventoryController.js
+
+No comments.
+
+### Listing 3. 27. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 28. inventoryController.test.js
+
+No comments.
+
+### Listing 3. 29. inventoryController.test.js
+
+No comments.
+
+### mocks/logger.js (doesn't have listing number) (page 66)
+
+No comments.
+
+### inventoryController.test.js (doesn't have listing number) (page 66)
+
+No comments.
+
+### Listing 3. 30. cart.js
+
+No comments.
+
+### Listing 3. 32. cart.js
+
+No comments.
+
+### Figure 3. 13
+
+The color in the legend for 'Module covered by test' doesn't match the diagram.
+
+### Listing 3. 33. cart.js
+
+No comments.
+
+### Listing 3. 34. Cart.test.js
+
+No comments.
+
+### Listing 3. 36. inventoryController.test..js
+
+No comments.
+
+> The `package.json` file under `chapter3\4_code_coverage` required some changes. Please find new file below. Updated `name` and added `coverage` under scripts. Also I could not find the `math.js` and `math.test.js`.
+
+```JSON
+{
+  "name": "4_code_coverage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "inventoryController.js",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "pino": "^5.16.0"
+  }
+}
+```
+
+### Listing 3. 37. math.js
+
+Updated code and checked in.
+
+### Listing 3. 38. math.test.js
+
+Updated code and checked in.
