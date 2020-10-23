@@ -9,10 +9,10 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "knex": "^0.20.13",
+    "knex": "^0.20.15",
     "koa": "^2.11.0",
     "koa-body-parser": "^1.1.2",
     "koa-router": "^7.4.0",
-    "sqlite3": "^4.1.1"
+    "sqlite3": "file:node_modules/sqlite3"
   }
 }
