@@ -8,11 +8,10 @@ class Cart {
   }
 
   removeFromCart(item) {
-    const { items } = this;
-    for (let i = 0; i < items.length; i++) {
-      const currentItem = items[i];
+    for (let i = 0; i < this.items.length; i++) {
+      const currentItem = this.items[i];
       if (currentItem === item) {
-        items.splice(i, 1);
+        this.items.splice(i, 1);
       }
     }
   }
