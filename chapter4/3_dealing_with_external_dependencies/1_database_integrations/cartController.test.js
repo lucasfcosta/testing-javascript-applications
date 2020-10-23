@@ -10,7 +10,7 @@ beforeEach(() => db("inventory").truncate());
 
 describe("addItemToCart", () => {
   beforeEach(() => {
-    fs.writeFileSync("/tmp/logs.out", "");
+    fs.writeFileSync("tmplogs.out", "");
   });
 
   test("adding unavailable items to cart", async () => {
@@ -103,7 +103,7 @@ describe("addItemToCart", () => {
 
     await addItemToCart("test_user", "cheesecake");
 
-    const logs = fs.readFileSync("/tmp/logs.out", "utf-8");
+    const logs = fs.readFileSync("tmplogs.out", "utf-8");
     expect(logs).toContain("cheesecake added to test_user's cart\n");
   });
 });
