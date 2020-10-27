@@ -15,7 +15,7 @@ const getItems = username => {
 
 test("adding items to a cart", async () => {
   const initialItemsResponse = await getItems("lucas");
-  expect(initialItemsResponse.status).toEqual(404);
+  expect(initialItemsResponse.status).toBe(404);
 
   const addItemResponse = await addItem("lucas", "cheesecake");
   expect(await addItemResponse.json()).toEqual(["cheesecake"]);
