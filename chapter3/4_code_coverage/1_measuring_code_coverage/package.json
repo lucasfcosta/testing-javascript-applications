@@ -1,0 +1,19 @@
+{
+  "name": "1_measuring_code_coverage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "inventoryController.js",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "pino": "^5.16.0"
+  }
+}
