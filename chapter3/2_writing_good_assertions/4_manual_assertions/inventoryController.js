@@ -14,6 +14,8 @@ const getInventory = () => {
     return { ...contents, [name]: quantity };
   }, {});
 
+  // To make the tests in this folder pass, update this
+  // line so that it doesn't set the new Date's year to 3000.
   return { ...contents, generatedAt: new Date(new Date().setYear(3000)) };
 };
 
