@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^26.6.0"
   },
   "dependencies": {
     "pino": "^5.16.0"

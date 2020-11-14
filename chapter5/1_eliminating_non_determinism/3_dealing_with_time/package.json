@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@sinonjs/fake-timers": "github:sinonjs/fake-timers",
-    "jest": "^24.9.0",
+    "jest": "^26.6.0",
     "supertest": "^4.0.2"
   },
   "dependencies": {
