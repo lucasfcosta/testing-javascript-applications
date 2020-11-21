@@ -1,0 +1,19 @@
+{
+  "name": "1_no_types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "orderQueue.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "jest": "^26.6.0"
+  },
+  "dependencies": {
+    "typescript": "^4.1.2"
+  }
+}
