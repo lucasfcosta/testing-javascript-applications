@@ -3,7 +3,7 @@
 
 <br>
 
-<h5 align=center>➡ Available for early-access at <a href="https://www.manning.com/books/testing-javascript-applications">Manning.com</a></h5>
+<h5 align=center>➡ Available at <a href="https://www.manning.com/books/testing-javascript-applications">Manning.com</a></h5>
 
 <br>
 
