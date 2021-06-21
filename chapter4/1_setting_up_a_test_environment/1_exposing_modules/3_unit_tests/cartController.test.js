@@ -47,7 +47,8 @@ describe("addItemToCart", () => {
     }
 
     expect(carts.get("test_user")).toEqual(initialCartContent);
-    expect.assertions(2);
+    expect(inventory.get('cheesecake')).toEqual(1);
+    expect.assertions(3);
   });
 
   test("logging added items", () => {
