@@ -1,4 +1,9 @@
 <h1 align=center>Testing JavaScript Applications</h1>
+<h4 align=center><i>A <a href="https://www.manning.com/">Manning</a> book by <a href="https://www.lucasfcosta.com">Lucas da Costa</a></i></h4>
+
+<br>
+
+<h5 align=center>➡ Available at <a href="https://www.manning.com/books/testing-javascript-applications">Manning.com</a></h5>
 
 <br>
 
