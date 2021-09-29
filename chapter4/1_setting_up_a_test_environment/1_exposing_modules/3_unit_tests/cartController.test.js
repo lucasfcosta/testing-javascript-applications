@@ -68,7 +68,7 @@ describe("compliesToItemLimit", () => {
     expect(compliesToItemLimit(cart)).toBe(true);
   });
 
-  test("returns true for cards with no more than 3 items of a kind", () => {
+  test("returns false for cards with no more than 3 items of a kind", () => {
     const cart = [
       "cheesecake",
       "cheesecake",
