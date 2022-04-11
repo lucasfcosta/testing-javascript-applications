@@ -13,6 +13,8 @@ beforeEach(() => localStorage.clear());
 beforeEach(async () => {
   document.body.innerHTML = initialHtml;
 
+  jest.spyOn(window, "addEventListener");
+
   // You must execute main.js again so that it can attach the
   // event listener to the form every time the body changes.
   // Here you must use `jest.resetModules` because otherwise
@@ -22,12 +24,7 @@ beforeEach(async () => {
   nock(API_ADDR)
     .get("/inventory")
     .replyWithError({ code: 500 });
-  await require("./main");
-
-  // You can only spy on `window.addEventListener` after `main.js`
-  // has been executed. Otherwise `detachPopstateHandlers` will
-  // also detach the handlers that `main.js` attached to the page.
-  jest.spyOn(window, "addEventListener");
+  await require("./main");  
 });
 
 afterEach(detachPopstateHandlers);
