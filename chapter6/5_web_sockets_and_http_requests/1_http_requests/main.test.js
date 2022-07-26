@@ -60,6 +60,8 @@ test("persists items between sessions", async () => {
 
   fireEvent.click(submitBtn);
 
+  await screen.findByText("cheesecake - Quantity: 6");
+
   const itemListBefore = document.getElementById("item-list");
   expect(itemListBefore.childNodes).toHaveLength(1);
   expect(
@@ -80,7 +82,7 @@ test("persists items between sessions", async () => {
 });
 
 describe("adding items", () => {
-  test("updating the item list", () => {
+  test("updating the item list", async () => {
     nock(API_ADDR)
       .post(/inventory\/.*$/)
       .reply(200);
@@ -97,11 +99,13 @@ describe("adding items", () => {
 
     fireEvent.click(submitBtn);
 
+    await screen.findByText("cheesecake - Quantity: 6");
+
     const itemList = document.getElementById("item-list");
     expect(getByText(itemList, "cheesecake - Quantity: 6")).toBeInTheDocument();
   });
 
-  test("sending a request to update the item list", () => {
+  test("sending a request to update the item list", async () => {
     nock(API_ADDR)
       .post("/inventory/cheesecake", JSON.stringify({ quantity: 6 }))
       .reply(200);
@@ -117,12 +121,13 @@ describe("adding items", () => {
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
     fireEvent.click(submitBtn);
+    await screen.findByText("cheesecake - Quantity: 6");
 
     if (!nock.isDone())
       throw new Error("POST /inventory/cheesecake was not reached");
   });
 
-  test("undo to one item", done => {
+  test("undo to one item", async () => {
     // You must specify the encoded URL here because
     // nock struggles with encoded urls
     nock(API_ADDR)
@@ -143,6 +148,8 @@ describe("adding items", () => {
     });
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
     fireEvent.click(submitBtn);
+    
+    await screen.findByText("cheesecake - Quantity: 6");
 
     fireEvent.input(itemField, {
       target: { value: "carrot cake" },
@@ -151,19 +158,20 @@ describe("adding items", () => {
     fireEvent.input(quantityField, { target: { value: "5" }, bubbles: true });
     fireEvent.click(submitBtn);
 
+    await screen.findByText("carrot cake - Quantity: 5");
+
     window.addEventListener("popstate", () => {
       const itemList = document.getElementById("item-list");
       expect(itemList.children).toHaveLength(1);
       expect(
         getByText(itemList, "cheesecake - Quantity: 6")
       ).toBeInTheDocument();
-      done();
     });
 
     fireEvent.click(screen.getByText("Undo"));
   });
 
-  test("undo to empty list", done => {
+  test("undo to empty list", async () => {
     nock(API_ADDR)
       .post(/inventory\/.*$/)
       .reply(200);
@@ -179,13 +187,14 @@ describe("adding items", () => {
     fireEvent.input(quantityField, { target: { value: "6" }, bubbles: true });
 
     fireEvent.click(submitBtn);
+    
+    await screen.findByText("cheesecake - Quantity: 6");
 
     expect(history.state).toEqual({ inventory: { cheesecake: 6 } });
 
     window.addEventListener("popstate", () => {
       const itemList = document.getElementById("item-list");
       expect(itemList).toBeEmpty();
-      done();
     });
 
     fireEvent.click(screen.getByText("Undo"));

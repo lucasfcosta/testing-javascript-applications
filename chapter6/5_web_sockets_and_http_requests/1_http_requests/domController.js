@@ -28,12 +28,12 @@ const updateItemList = inventory => {
   window.document.body.appendChild(p);
 };
 
-const handleAddItem = event => {
+const handleAddItem = async event => {
   // Prevent the page from reloading as it would by default
   event.preventDefault();
 
   const { name, quantity } = event.target.elements;
-  addItem(name.value, parseInt(quantity.value, 10));
+  await addItem(name.value, parseInt(quantity.value, 10));
 
   history.pushState({ inventory: { ...data.inventory } }, document.title);
 
