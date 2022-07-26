@@ -1,12 +1,12 @@
 const data = { inventory: {} };
 
-const API_ADDR = "http://localhost:3000";
+const API_ADDR = "http://127.0.0.1:3000";
 
-const addItem = (itemName, quantity) => {
+const addItem = async (itemName, quantity) => {
   const currentQuantity = data.inventory[itemName] || 0;
   data.inventory[itemName] = currentQuantity + quantity;
 
-  fetch(`${API_ADDR}/inventory/${itemName}`, {
+  await fetch(`${API_ADDR}/inventory/${itemName}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ quantity })
